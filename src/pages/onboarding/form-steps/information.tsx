@@ -7,7 +7,7 @@ export default function Information() {
             <img src={LAPTOP_IMG} alt="illustration" className="mx-auto" />
             <SectionHeader
                 title={<>
-                    Welcome Back! Now we need some <br /> information about the child(ren)
+                    Welcome Back! Now we need some <br /> information about your child(ren)
                 </>}
                 subStitle='You will earn more points for answering the question'
             />
