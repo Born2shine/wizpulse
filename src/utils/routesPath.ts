@@ -1,5 +1,6 @@
 const routesPath = {
-  HOME: "/onboarding",
+  ONBOARDING: "/onboarding",
+  HOME: "/",
   LOGIN: "/login",
   REGISTER: "/register",
 };

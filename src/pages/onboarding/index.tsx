@@ -62,7 +62,7 @@ export default function Onboarding() {
     const dispatch = useAppDispatch()
 
     const { onboarding } = useAppSelector((state) => state.onboarding)
-    const [addStudent, { isLoading, }] = useAddStudentMutation()
+    const [addStudent, { isLoading }] = useAddStudentMutation()
     const [addParentConsent, {isLoading: isAddingConsent}] = useAddParentConsentMutation()
 
     const handleFormSubmit = (values) => {
@@ -77,7 +77,7 @@ export default function Onboarding() {
             }
             addStudent(PAYLOAD)
                 .unwrap()
-                .then((payload) => {
+                .then(() => {
                     toast.success("Student Added Successfully")
                     navigate(`${pathname}?type=${type}&ui=consent-information&uidb64=${uidb64}`)
                 })
