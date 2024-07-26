@@ -9,7 +9,7 @@ export default function Information() {
                 title={<>
                     Welcome Back! Now we need some <br /> information about your child(ren)
                 </>}
-                subStitle='You will earn more points for answering the question'
+                subStitle='You will earn more points for answering these questions'
             />
             <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2">
                 <img src={FOOTER_LOGO} alt="footer-logo" />
