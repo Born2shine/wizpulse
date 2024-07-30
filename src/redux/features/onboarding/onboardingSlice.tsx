@@ -13,6 +13,8 @@ const initialState: Dictionary = {
                 school_name: "",
                 school_city: "",
                 date_of_birth: "",
+                who_takes_the_child_to_school: "",
+                means_of_commute: "",
             }
         ],
         other_info: {

@@ -79,9 +79,9 @@ export default function AddStudent({ formik }: AddStudentProps) {
                                                 label='Gender'
                                                 name={`student.${index}.gender`}
                                                 options={[
-                                                    {label: 'MALE', value: 'MALE'},
-                                                    {label: 'FEMALE', value: 'FEMALE'},
-                                                    {label: 'OTHERS', value: 'OTHERS'},
+                                                    { label: 'MALE', value: 'MALE' },
+                                                    { label: 'FEMALE', value: 'FEMALE' },
+                                                    { label: 'OTHERS', value: 'OTHERS' },
                                                 ]}
                                                 selected={formik?.values?.student?.[index]?.gender}
                                                 setSelected={(selected) => formik.setFieldValue(`student.${index}.gender`, selected)}
@@ -96,19 +96,19 @@ export default function AddStudent({ formik }: AddStudentProps) {
                                                 label='Grade'
                                                 name={`student.${index}.grade`}
                                                 options={[
-                                                    {label: 'Kindergarten', value: 'KINDERGARTEN'},
-                                                    {label: 'First', value: 'FIRST'},
-                                                    {label: 'Second', value: 'SECOND'},
-                                                    {label: 'Third', value: 'THIRD'},
-                                                    {label: 'Fourth', value: 'FOURTH'},
-                                                    {label: 'Fifth', value: 'FIFTH'},
-                                                    {label: 'Sixth', value: 'SIXTH'},
-                                                    {label: 'Seventh', value: 'SEVENTH'},
-                                                    {label: 'Eighth', value: 'EIGHTH'},
-                                                    {label: 'Ninth', value: 'NINTH'},
-                                                    {label: 'Tenth', value: 'TENTH'},
-                                                    {label: 'Eleventh', value: 'ELEVENTH'},
-                                                    {label: 'Twelfth', value: 'TWELFTH'},
+                                                    { label: 'Kindergarten', value: 'KINDERGARTEN' },
+                                                    { label: 'First', value: 'FIRST' },
+                                                    { label: 'Second', value: 'SECOND' },
+                                                    { label: 'Third', value: 'THIRD' },
+                                                    { label: 'Fourth', value: 'FOURTH' },
+                                                    { label: 'Fifth', value: 'FIFTH' },
+                                                    { label: 'Sixth', value: 'SIXTH' },
+                                                    { label: 'Seventh', value: 'SEVENTH' },
+                                                    { label: 'Eighth', value: 'EIGHTH' },
+                                                    { label: 'Ninth', value: 'NINTH' },
+                                                    { label: 'Tenth', value: 'TENTH' },
+                                                    { label: 'Eleventh', value: 'ELEVENTH' },
+                                                    { label: 'Twelfth', value: 'TWELFTH' },
                                                 ]}
                                                 selected={formik?.values?.student?.[index]?.grade}
                                                 setSelected={(selected) => formik.setFieldValue(`student.${index}.grade`, selected)}
@@ -117,6 +117,7 @@ export default function AddStudent({ formik }: AddStudentProps) {
                                                 isRequired
                                             />
                                         </div>
+
                                         <div className='relative mb-3'>
                                             <Input
                                                 label='Name of School'
@@ -145,7 +146,47 @@ export default function AddStudent({ formik }: AddStudentProps) {
                                                 className='placeholder:text-isGray400'
                                             />
                                         </div>
-                                        <span></span>
+                                        <div className='relative mb-3'>
+                                            <CustomSelect
+                                                id={`means_of_commute.${index}`}
+                                                label='How does this child get to school?'
+                                                name={`student.${index}.means_of_commute`}
+                                                options={[
+                                                    { label: '⁠Driven by Partners/guardians', value: '⁠Driven by Partners/guardians' },
+                                                    { label: 'Walks to School', value: 'Walks to School' },
+                                                    { label: 'School Bus', value: 'School Bus' },
+                                                    { label: 'Public Bus', value: 'Public Bus' },
+                                                    { label: 'Train', value: 'Train' },
+                                                    { label: 'Bikes or Scooters', value: 'Bikes or Scooters' },
+                                                    { label: 'Ride sharing (UBER, LYFT etc.)', value: 'Ride sharing (UBER, LYFT etc.)' },
+                                                    { label: 'Others', value: 'Others' },
+                                                ]}
+                                                selected={formik?.values?.student?.[index]?.means_of_commute}
+                                                setSelected={(selected) => formik.setFieldValue(`student.${index}.means_of_commute`, selected)}
+                                                error={formik?.errors?.student?.[index]?.means_of_commute}
+                                                touched={formik?.touched?.student?.[index]?.means_of_commute}
+                                                isRequired
+                                            />
+                                        </div>
+                                        <div className='relative mb-3'>
+                                            <CustomSelect
+                                                id={`who_takes_the_child_to_school.${index}`}
+                                                label='Who takes this child to school?'
+                                                name={`student.${index}.who_takes_the_child_to_school`}
+                                                options={[
+                                                    { label: 'Parent or guardian', value: 'Parent or guardian' },
+                                                    { label: 'Siblings', value: 'Siblings' },
+                                                    { label: 'They go alone', value: 'They go alone' },
+                                                    { label: 'Caregiver', value: 'Caregiver' },
+                                                    { label: 'Others', value: 'Others' },
+                                                ]}
+                                                selected={formik?.values?.student?.[index]?.who_takes_the_child_to_school}
+                                                setSelected={(selected) => formik.setFieldValue(`student.${index}.who_takes_the_child_to_school`, selected)}
+                                                error={formik?.errors?.student?.[index]?.who_takes_the_child_to_school}
+                                                touched={formik?.touched?.student?.[index]?.who_takes_the_child_to_school}
+                                                isRequired
+                                            />
+                                        </div>
                                         <div className='relative my-6'>
                                             <Button
                                                 className='bg-white border border-primary text-primary rounded-full hover:bg-background'
@@ -159,6 +200,8 @@ export default function AddStudent({ formik }: AddStudentProps) {
                                                         school_name: "",
                                                         school_city: "",
                                                         date_of_birth: "",
+                                                        who_takes_the_child_to_school: "",
+                                                        means_of_commute: "",
                                                     }
                                                 )}
                                             > <Plus className='pr-2' /> <span>Add Student </span></Button>

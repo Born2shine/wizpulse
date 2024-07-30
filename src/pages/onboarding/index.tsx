@@ -22,6 +22,8 @@ interface initialValues {
         school_name: string,
         school_city: string,
         date_of_birth: string,
+        who_takes_the_child_to_school: string,
+        means_of_commute: string,
     }[],
     other_info: {
         challenge_prize_not_guaranteed: string,
@@ -44,6 +46,8 @@ export default function Onboarding() {
                 school_name: "",
                 school_city: "",
                 date_of_birth: "",
+                who_takes_the_child_to_school: "",
+                means_of_commute: "",
             }
         ],
         other_info: {
@@ -100,13 +104,15 @@ export default function Onboarding() {
         yup.object().shape({
             student: yup.array().of(
                 yup.object().shape({
-                    first_name: yup.string().required('first name is required'),
-                    last_name: yup.string().required('last name is required'),
-                    gender: yup.string().required('gender is required'),
-                    grade: yup.string().required('grade is required'),
-                    school_name: yup.string().required('school name is required'),
-                    school_city: yup.string().required('school city is required'),
-                    date_of_birth: yup.string().required('date of birth is required'),
+                    first_name: yup.string().required('First name is required'),
+                    last_name: yup.string().required('Last name is required'),
+                    gender: yup.string().required('Gender is required'),
+                    grade: yup.string().required('Grade is required'),
+                    school_name: yup.string().required('School name is required'),
+                    school_city: yup.string().required('School city is required'),
+                    date_of_birth: yup.string().required('Date of birth is required'),
+                    who_takes_the_child_to_school: yup.string().required('This field is required'),
+                    means_of_commute: yup.string().required('Means of commute is required'),
                 }),
             )
         }),
@@ -136,6 +142,8 @@ export default function Onboarding() {
             dispatch(setAuthUser({ token: uidb64 }));
         }
     }, [])
+
+   
 
     return (
         <section className="w-screen h-screen overflow-hidden px-8 md:m-5 md:rounded-3xl md:border md:w-[30rem] md:mx-auto">
