@@ -62,7 +62,7 @@ module.exports = {
         isGray700: "#616161",
         isGray800: "#344054",
         isGray900: "#212121",
-        isPrimary100: "#F5FAFF",
+        isPrimary100: "#CCE3F9",
         isPrimary200: "#F6F9FF",
         isPrimary300: "#0045C2",
         isPrimary500: "#00008B",
