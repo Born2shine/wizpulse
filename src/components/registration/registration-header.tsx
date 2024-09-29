@@ -3,30 +3,35 @@ import { ChevronLeft } from "lucide-react";
 import WelcomeAvatar from "../../assets/images/avatar.png";
 import CustomStepper from "../custom-stepper";
 import { cn } from "@/lib/utils";
+import { ReactNode } from "react";
 const RegistrationHeader = ({
   activeStep,
   totalSteps,
   goBack,
   description,
   descriptionWidth,
+  extraDescription,
 }: {
-  activeStep: number;
-  totalSteps: number;
-  goBack: () => void;
+  activeStep?: number;
+  totalSteps?: number;
+  goBack?: () => void;
   description: string;
   descriptionWidth?: string;
+  extraDescription?: ReactNode | string;
 }) => {
   return (
     <header className="mt-20">
-      <div className="flex items-center justify-between w-3/5">
-        <Button
-          className="bg-transparent px-0 text-[#292D32] hover:bg-transparent"
-          onClick={goBack}
-        >
-          <ChevronLeft />
-        </Button>
-        <CustomStepper activeStep={activeStep} totalSteps={totalSteps} />
-      </div>
+      {totalSteps && (
+        <div className="flex items-center justify-between w-3/5">
+          <Button
+            className="bg-transparent px-0 text-[#292D32] hover:bg-transparent"
+            onClick={goBack}
+          >
+            <ChevronLeft />
+          </Button>
+          <CustomStepper activeStep={activeStep || 0} totalSteps={totalSteps} />
+        </div>
+      )}
 
       <div className="flex flex-col gap-3 items-center mt-10">
         <img
@@ -42,6 +47,7 @@ const RegistrationHeader = ({
         >
           {description}
         </h2>
+        <p className="text-xs font-normal text-isGray700 mb-9">{extraDescription}</p>
       </div>
     </header>
   );

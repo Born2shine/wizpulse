@@ -1,7 +1,7 @@
 import { Button } from "@/components";
+import CheckInput from "@/components/custom-check-input";
 import PhoneInput from "@/components/custom-phone-input";
 import RegistrationHeader from "@/components/registration/registration-header";
-import { Checkbox } from "@/components/ui/checkbox";
 import { useNavigate } from "react-router-dom";
 
 const StepThree = ({ formik }: any) => {
@@ -24,37 +24,35 @@ const StepThree = ({ formik }: any) => {
           onChange={formik.setFieldValue}
           error={formik?.errors?.phone_number}
           name="phone_number"
-          //   touched={formik?.touched?.phone}
+          touched={formik?.touched?.phone}
           isRequired
         />
-        <div className="flex space-x-2 mt-6">
-          <Checkbox id="terms1" />
-          <div className="grid gap-1.5 leading-none">
-            <label
-              htmlFor="terms1"
-              className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-            >
-              I agree to receive a one-time-password from Wizpulse to verify my
-              account. Reply STOP to opt out
-            </label>
-          </div>
-        </div>
-        <div className="flex space-x-2 mt-6">
-          <Checkbox id="terms1" />
-          <div className="grid gap-1.5 leading-none">
-            <label
-              htmlFor="terms1"
-              className="text-sm font-medium leading-none text-isGray900 peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-            >
+        <CheckInput
+          value={formik.values.agree}
+          onChange={formik.setFieldValue}
+          error={formik?.errors?.agree}
+          touched={formik?.touched?.agree}
+          name="agree"
+          label="I agree to receive a one-time-password from Wizpulse to verify my account. Reply STOP to opt out"
+        />
+        <CheckInput
+          value={formik.values.terms}
+          onChange={formik.setFieldValue}
+          error={formik?.errors?.terms}
+          touched={formik?.touched?.terms}
+          name="terms"
+          label={
+            <>
               I have read and agree to Wizpulse’s{" "}
               <span className="text-isPrimary300">Privacy Policy</span> and{" "}
               <span className="text-isPrimary300">Terms of Service</span>
-            </label>
-          </div>
-        </div>
+            </>
+          }
+        />
         <Button
           className="w-full mt-[3rem]"
-          onClick={() => navigate("/register?isRegistration=true&step=four")}
+          onClick={() => formik.handleSubmit()}
+          type="button"
         >
           Next Step
         </Button>

@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import { LockKeyhole } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
-const StepFour = ({ formik }: any) => {
+const StepFour = ({ formik, isLoading }: any) => {
   const navigate = useNavigate();
   return (
     <section className="w-full">
@@ -16,7 +16,6 @@ const StepFour = ({ formik }: any) => {
           navigate("/register?isRegistration=true&step=three");
         }}
       />
-
       <div className="flex flex-col items-center w-full justify-center h-full mt-8">
         <div className="relative mb-3 w-full">
           <Input
@@ -36,14 +35,16 @@ const StepFour = ({ formik }: any) => {
             className="absolute left-3 top-11 text-isGray400"
           />
         </div>
-        <div>
-          <h4>Password criteria</h4>
+        <div className="mt-2">
+          <h4 className="text-isPrimary900 text-xs tracking-[0.2px] font-bold mb-2">
+            Password criteria
+          </h4>
           <ul className="flex flex-wrap gap-4 text-[#1C1C1C] font-medium">
             <li
               className={cn(
-                "py-1 text-[10px] whitespace-nowrap bg-white p-2 rounded-[120px]",
+                "py-1 text-[10px] whitespace-nowrap border border-isPrimary100 bg-white p-2 rounded-[120px]",
                 Boolean(formik.values?.password?.length) &&
-                  !/\d/g.test(formik.values?.password)
+                  /\d/g.test(formik.values?.password)
                   ? "bg-isPrimary100"
                   : ""
               )}
@@ -52,9 +53,9 @@ const StepFour = ({ formik }: any) => {
             </li>
             <li
               className={cn(
-                "py-1 text-[10px] whitespace-nowrap bg-white p-2 rounded-[120px]",
+                "py-1 text-[10px] whitespace-nowrap border border-isPrimary100 bg-white p-2 rounded-[120px]",
                 Boolean(formik.values?.password?.length) &&
-                  !/[A-Z]/g.test(formik.values?.password)
+                  /[A-Z]/g.test(formik.values?.password)
                   ? "bg-isPrimary100"
                   : ""
               )}
@@ -63,9 +64,9 @@ const StepFour = ({ formik }: any) => {
             </li>
             <li
               className={cn(
-                "py-1 text-[10px] whitespace-nowrap bg-white p-2 rounded-[120px]",
+                "py-1 text-[10px] whitespace-nowrap border border-isPrimary100 bg-white p-2 rounded-[120px]",
                 Boolean(formik.values?.password?.length) &&
-                  !/[a-z]/g.test(formik.values?.password)
+                  /[a-z]/g.test(formik.values?.password)
                   ? "bg-isPrimary100"
                   : ""
               )}
@@ -74,9 +75,9 @@ const StepFour = ({ formik }: any) => {
             </li>
             <li
               className={cn(
-                "py-1 text-[10px] whitespace-nowrap bg-white p-2 rounded-[120px]",
+                "py-1 text-[10px] whitespace-nowrap border border-isPrimary100 bg-white p-2 rounded-[120px]",
                 Boolean(formik.values?.password?.length) &&
-                  formik.values?.password?.length < 8
+                  formik.values?.password?.length >= 12
                   ? "bg-isPrimary100"
                   : ""
               )}
@@ -87,7 +88,9 @@ const StepFour = ({ formik }: any) => {
         </div>
         <Button
           className="w-full mt-[3rem]"
-          onClick={() => navigate("/register?isRegistration=true&step=three")}
+          type="button"
+          loading={isLoading}
+          onClick={() => formik.handleSubmit()}
         >
           Sign Up
         </Button>

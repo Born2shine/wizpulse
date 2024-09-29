@@ -20,8 +20,8 @@ const StepTwo = ({ formik }: any) => {
         <div className="relative mb-3 w-full">
           <Input
             label="Email Address"
-            id="first_name"
-            name="first_name"
+            id="email"
+            name="email"
             value={formik.values.email}
             onChange={formik.handleChange}
             error={formik?.errors?.email}
@@ -34,7 +34,8 @@ const StepTwo = ({ formik }: any) => {
         </div>
         <Button
           className="w-full mt-[3rem]"
-          onClick={() => navigate("/register?isRegistration=true&step=three")}
+          onClick={() => formik.handleSubmit()}
+          type="button"
         >
           Next Step
         </Button>

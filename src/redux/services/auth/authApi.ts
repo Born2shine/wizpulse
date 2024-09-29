@@ -29,8 +29,53 @@ export const authApi = baseApi.injectEndpoints({
           const result = await queryFulfilled;
           const { data } = result;
           Cookies.set("token", data);
-          sessionStorage.setItem('token', data)
+          sessionStorage.setItem("token", data);
           dispatch(setAuthUser(data));
+        } catch (error: any) {
+          const errors = error?.error?.data;
+          toastError(errors);
+        }
+      },
+    }),
+    register: builder.mutation({
+      query: (user) => ({
+        url: `/auth/registration/`,
+        method: "POST",
+        body: user,
+      }),
+      async onQueryStarted(_, { queryFulfilled }) {
+        try {
+          await queryFulfilled;
+        } catch (error: any) {
+          const errors = error?.error?.data;
+          toastError(errors);
+        }
+      },
+    }),
+    verifyOtp: builder.mutation({
+      query: (user) => ({
+        url: `/auth/registration/verify-email-otp/`,
+        method: "POST",
+        body: user,
+      }),
+      async onQueryStarted(_, { queryFulfilled }) {
+        try {
+          await queryFulfilled;
+        } catch (error: any) {
+          const errors = error?.error?.data;
+          toastError(errors);
+        }
+      },
+    }),
+    resendEmailOtp: builder.mutation({
+      query: (user) => ({
+        url: `/auth/registration/resend-email-otp/`,
+        method: "POST",
+        body: user,
+      }),
+      async onQueryStarted(_, { queryFulfilled }) {
+        try {
+          await queryFulfilled;
         } catch (error: any) {
           const errors = error?.error?.data;
           toastError(errors);
@@ -57,4 +102,10 @@ export const authApi = baseApi.injectEndpoints({
   }),
 });
 
-export const { useLoginMutation, useLogoutMutation } = authApi;
+export const {
+  useLoginMutation,
+  useLogoutMutation,
+  useRegisterMutation,
+  useVerifyOtpMutation,
+  useResendEmailOtpMutation,
+} = authApi;

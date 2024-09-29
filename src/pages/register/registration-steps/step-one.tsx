@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 const StepOne = ({ formik }: any) => {
   const navigate = useNavigate();
+
   return (
     <section className="w-full">
       <RegistrationHeader
@@ -44,7 +45,7 @@ const StepOne = ({ formik }: any) => {
             placeholder="Your Middle Name"
             className="pl-8 placeholder:text-isGray400"
           />
-          <User size="16" className="absolute left-3 top-11 text-isGray400" />
+          <User size="16" className="absolute left-3 top-[34px] text-isGray400" />
         </div>
         <div className="relative mb-3 w-full">
           <Input
@@ -63,7 +64,8 @@ const StepOne = ({ formik }: any) => {
         </div>
         <Button
           className="w-full mt-[3rem]"
-          onClick={() => navigate("/register?isRegistration=true&step=two")}
+          onClick={() => formik.handleSubmit()}
+          type="button"
         >
           Next Step
         </Button>

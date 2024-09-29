@@ -8,6 +8,7 @@ export default function PhoneInput({
   label,
   isRequired,
   error,
+  touched,
 }: {
   value: string;
   onChange: (name: string, value: string) => void;
@@ -15,18 +16,19 @@ export default function PhoneInput({
   label: string;
   isRequired: boolean;
   error: string;
+  touched: boolean;
 }) {
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const input = e.target.value.replace(/\D/g, "");
-    const formattedInput = formatPhoneNumber(input);
-    onChange(name, formattedInput);
+    // const formattedInput = formatPhoneNumber(input);
+    onChange(name, input);
   };
 
-  const formatPhoneNumber = (input: string) => {
-    if (input.length <= 3) return input;
-    if (input.length <= 6) return `(${input.slice(0, 3)}) ${input.slice(3)}`;
-    return `(${input.slice(0, 3)}) ${input.slice(3, 6)}-${input.slice(6, 10)}`;
-  };
+  // const formatPhoneNumber = (input: string) => {
+  //   if (input.length <= 3) return input;
+  //   if (input.length <= 6) return `(${input.slice(0, 3)}) ${input.slice(3)}`;
+  //   return `(${input.slice(0, 3)}) ${input.slice(3, 6)}-${input.slice(6, 10)}`;
+  // };
 
   return (
     <div className="w-full max-w-md mx-auto">
@@ -59,7 +61,7 @@ export default function PhoneInput({
           </div>
         </div>
         <input
-          type="tel"
+          type="text"
           id={name}
           className="block w-full h-10 pl-16 pr-4 py-3 text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-[.85rem] "
           placeholder="(41) 345-897-21"
@@ -68,7 +70,7 @@ export default function PhoneInput({
         />
       </div>
       <span className={cn("text-xs text-red-500 hidden", error && "block")}>
-        {error && error}
+        {error && touched && error}
       </span>
     </div>
   );
