@@ -13,7 +13,8 @@ import { onboardingReset } from "../features/onboarding/onboardingSlice";
 export const baseQuery = fetchBaseQuery({
   baseUrl: import.meta.env.VITE_API_BASE_URL,
   prepareHeaders: (headers) => {
-    const accessToken: string = Cookies.get("token") || "";
+    const accessToken: string =
+      Cookies.get("token") || sessionStorage.getItem("token") || "";
     if (accessToken) {
       headers.set("Authorization", `Bearer ${accessToken}`);
     }
@@ -30,10 +31,10 @@ export const baseQueryInterceptor: BaseQueryFn<
 
   // Handle errors or side-effects here
   if (result.error) {
-    let res: any = result.error;
+    const res: any = result.error;
     // console.log(res)
     if (res.status === 400) {
-      let message = res.data.message;
+      const message = res.data.message;
       // toast.error(message)
     }
     if (res.status === 401) {
@@ -41,7 +42,7 @@ export const baseQueryInterceptor: BaseQueryFn<
       api.dispatch(onboardingReset());
       Cookies.remove("token");
       clearStorageItem();
-      window.location.href = "/login";
+      window.location.href = "/";
     }
   }
 

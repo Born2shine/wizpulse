@@ -3,6 +3,7 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 const initialState = {
   token: "",
   user: {},
+  parentInfo: {},
 };
 
 const authSlice = createSlice({
@@ -16,9 +17,16 @@ const authSlice = createSlice({
       state.user = action.payload;
       // state.token = action.payload.token
     },
+    setRegisteredUser: (state, action: PayloadAction<any>) => {
+      state.user = action.payload;
+    },
+    setParentInfo: (state, action: PayloadAction<any>) => {
+      state.parentInfo = action.payload;
+    },
   },
 });
 
-export const { setAuthUser } = authSlice.actions;
+export const { setAuthUser, setRegisteredUser, setParentInfo } =
+  authSlice.actions;
 export const authSliceReducer = authSlice.reducer;
 export const authReset = authSlice.actions.reset;
