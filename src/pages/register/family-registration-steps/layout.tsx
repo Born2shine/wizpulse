@@ -20,9 +20,11 @@ import { useSetupParentMutation } from "@/redux/services/auth/authApi";
 import { toast } from "sonner";
 import { useAppDispatch } from "@/redux/store";
 import { setParentInfo } from "@/redux/features/auth/authSlice";
+import { useState } from "react";
 
 const FamilyRegistrationLayout = () => {
   const [searchParams, setSearchParams] = useSearchParams();
+  const [skip, setSkip] = useState(false);
 
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -63,7 +65,8 @@ const FamilyRegistrationLayout = () => {
       return communicationScreenSchema;
     } else if (
       searchParams.get("isRegistration") === "false" &&
-      searchParams.get("step") === "add-parent"
+      searchParams.get("step") === "add-parent" &&
+      !skip
     ) {
       return addParentScreenSchema;
     }
@@ -155,6 +158,7 @@ const FamilyRegistrationLayout = () => {
                 "parentInfo",
                 JSON.stringify(response?.data?.data)
               );
+              setSkip(false);
               dispatch(setParentInfo(response?.data?.data));
               toast.success("Account setup successful");
               navigate("/onboarding?ui=information");
@@ -194,6 +198,7 @@ const FamilyRegistrationLayout = () => {
                   <AddParentScreen
                     formik={formikProps}
                     loading={settingUpParent}
+                    setSkip={setSkip}
                   />
                 )}
             </>

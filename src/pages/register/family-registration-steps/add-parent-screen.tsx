@@ -5,7 +5,7 @@ import { FieldArray, useFormikContext } from "formik";
 import { CircleMinus, Mail, Plus, User } from "lucide-react";
 import { useSearchParams } from "react-router-dom";
 
-const AddParentScreen = ({ formik }: any) => {
+const AddParentScreen = ({ formik, loading, setSkip }: any) => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const { submitForm } = useFormikContext();
@@ -146,19 +146,15 @@ const AddParentScreen = ({ formik }: any) => {
         onClick={() => {
           formik.handleSubmit();
         }}
+        loading={loading}
       >
         Done
       </Button>
       <Button
         className="w-full bg-transparent mt-2 text-isPrimary500 hover:bg-transparent"
         onClick={() => {
-          formik.validateOnChange = false;
-          formik.validateOnBlur = false;
-          submitForm().then(() => {
-            // Re-enable validation after submission
-            formik.validateOnChange = true;
-            formik.validateOnBlur = true;
-          });
+          setSkip(true);
+          formik.handleSubmit();
         }}
       >
         Skip for now
