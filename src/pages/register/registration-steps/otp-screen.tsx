@@ -41,7 +41,7 @@ const OtpScreen = () => {
         email: user?.email,
       };
       const response = await verifyOtp(payload);
-      if (response?.data?.detail === "Phone number verified successfully") {
+      if (response?.data?.detail === "Email verified successfully") {
         Cookies.set("token", response?.data?.data?.access);
         sessionStorage.setItem("token", response?.data?.data?.access);
         setSearchParams({
