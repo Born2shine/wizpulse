@@ -85,7 +85,7 @@ const StepFour = ({ formik, isLoading }: any) => {
               className={cn(
                 "py-1 text-[10px] whitespace-nowrap border border-isPrimary100 bg-white p-2 rounded-[120px]",
                 Boolean(formik.values?.password?.length) &&
-                  formik.values?.password?.length >= 12
+                  formik.values?.password?.length >= 8
                   ? "bg-green-200"
                   : ""
               )}
