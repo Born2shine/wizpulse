@@ -34,7 +34,7 @@ const EducationalBackgroundScreen = ({ formik }: any) => {
               },
               {
                 label: "Some College (but didn’t finish)",
-                value: "SOME COLLEGE (BUT DIDN'T FINISH)",
+                value: "SOME COLLEGE (BUT DID'T FINISH)",
               },
               {
                 label: "BA/BS Degree",
@@ -42,11 +42,11 @@ const EducationalBackgroundScreen = ({ formik }: any) => {
               },
               {
                 label: "MA/MS or higher",
-                value: "MA/MS OR HIGHER",
+                value: "MA/MS DEGREE",
               },
               {
                 label: "Trade or License Certificate",
-                value: "TRADE OR LICENSE CERTIFICATE",
+                value: "TRADE CERTIFICATE",
               },
             ]}
             value={formik.values.education_level}
