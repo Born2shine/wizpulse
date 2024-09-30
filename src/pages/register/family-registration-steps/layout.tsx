@@ -1,5 +1,5 @@
 import { Formik } from "formik";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import AddressScreen from "./address-screen";
 import BackgroundScreen from "./background-screen";
 import FinancialStatusScreen from "./financial-status-screen";
@@ -16,9 +16,16 @@ import {
   financialStatusScreenSchema,
   schoolAttendanceScreenSchema,
 } from "@/utils/schema/registerSchema";
+import { useSetupParentMutation } from "@/redux/services/auth/authApi";
+import { toast } from "sonner";
 
 const FamilyRegistrationLayout = () => {
   const [searchParams, setSearchParams] = useSearchParams();
+
+  const navigate = useNavigate();
+
+  const [setupParent, { isLoading: settingUpParent }] =
+    useSetupParentMutation();
 
   const getFamiyValidationSchema = () => {
     if (
@@ -58,6 +65,7 @@ const FamilyRegistrationLayout = () => {
       return addParentScreenSchema;
     }
   };
+
   return (
     <section className="h-full overflow-hidden">
       <Formik
@@ -88,7 +96,7 @@ const FamilyRegistrationLayout = () => {
           total_points: 0,
         }}
         validationSchema={getFamiyValidationSchema()}
-        onSubmit={(values) => {
+        onSubmit={async (values) => {
           if (searchParams.get("step") === "address") {
             setSearchParams({ isRegistration: "false", step: "ethnicity" });
           } else if (searchParams.get("step") === "ethnicity") {
@@ -117,7 +125,36 @@ const FamilyRegistrationLayout = () => {
               step: "add-parent",
             });
           } else if (searchParams.get("step") === "add-parent") {
-            console.log("values", values);
+            const payload = {
+              address: {
+                address_line_1: values?.address_line_1,
+                address_line_2: values?.address_line_2,
+                city: values?.city,
+                state_or_province: values?.state_or_province,
+                zip_code: values?.zip_code,
+              },
+              other_parents: values?.other_parents,
+              ethnicity: values?.ethnicity,
+              family_income_level: values?.family_income_level,
+              qualify_for_lunch: values?.qualify_for_lunch,
+              education_level: values?.education_level,
+              trade_certificate_name: "string",
+              attendance_importance: values?.attendance_importance,
+              mode_of_communication: values?.mode_of_communication,
+              profile_image_url: "",
+              verified: true,
+              streak_count: 0,
+              total_points: 0,
+            };
+            const response = await setupParent(payload);
+            if (Object.keys(response?.data?.data)?.includes("id")) {
+              sessionStorage.setItem(
+                "parentInfo",
+                JSON.stringify(response?.data?.data)
+              );
+              toast.success("Account setup successful");
+              navigate("/onboarding?ui=information");
+            }
           }
         }}
       >
@@ -150,7 +187,10 @@ const FamilyRegistrationLayout = () => {
                 )}
               {searchParams.get("isRegistration") === "false" &&
                 searchParams.get("step") === "add-parent" && (
-                  <AddParentScreen formik={formikProps} />
+                  <AddParentScreen
+                    formik={formikProps}
+                    loading={settingUpParent}
+                  />
                 )}
             </>
           );

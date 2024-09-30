@@ -26,7 +26,7 @@ const SchoolAttendanceScreen = ({ formik }: any) => {
             options={[
               {
                 label: "Very Important",
-                value: "VERY ImPORTANT",
+                value: "VERY IMPORTANT",
               },
               {
                 label: "Somewhat Important",

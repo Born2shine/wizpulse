@@ -82,6 +82,21 @@ export const authApi = baseApi.injectEndpoints({
         }
       },
     }),
+    setupParent: builder.mutation({
+      query: (user) => ({
+        url: `/wizpulse/wizearly-setup-parent/`,
+        method: "POST",
+        body: user,
+      }),
+      async onQueryStarted(_, { queryFulfilled }) {
+        try {
+          await queryFulfilled;
+        } catch (error: any) {
+          const errors = error?.error?.data;
+          toastError(errors);
+        }
+      },
+    }),
     logout: builder.mutation({
       query: () => ({
         url: `/auth/logout/`,
@@ -108,4 +123,5 @@ export const {
   useRegisterMutation,
   useVerifyOtpMutation,
   useResendEmailOtpMutation,
+  useSetupParentMutation
 } = authApi;

@@ -26,23 +26,23 @@ const FinancialStatusScreen = ({ formik }: any) => {
             options={[
               {
                 label: "$80,000 and above",
-                value: "$80,000 and above",
+                value: "80,000 AND ABOVE",
               },
               {
                 label: "$60,000 to $79,999",
-                value: "$60,000 to $79,999",
+                value: "60,000 TO $79,999",
               },
               {
                 label: "$40,000 to $59,999",
-                value: "$40,000 to $59,999",
+                value: "40,000 TO $59,999",
               },
               {
                 label: "$25,000 to $39,999",
-                value: "$25,000 to $39,999",
+                value: "25,000 TO $39,999",
               },
               {
                 label: "$24,999 and below",
-                value: "$24,999 and below",
+                value: "24,999 AND BELOW",
               },
             ]}
             value={formik.values.family_income_level}

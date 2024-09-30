@@ -14,7 +14,7 @@ const EducationalBackgroundScreen = ({ formik }: any) => {
           setSearchParams({
             ...searchParams,
             isRegistration: "false",
-            step: "attendance",
+            step: "financial-status",
           })
         }
       />
@@ -56,7 +56,11 @@ const EducationalBackgroundScreen = ({ formik }: any) => {
         </div>
       </div>
 
-      <Button className="w-full mt-4" type="button" onClick={() => formik.handleSubmit()}>
+      <Button
+        className="w-full mt-4"
+        type="button"
+        onClick={() => formik.handleSubmit()}
+      >
         Proceed
       </Button>
     </section>

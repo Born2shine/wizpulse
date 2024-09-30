@@ -13,8 +13,8 @@ const AddressScreen = ({ formik }: any) => {
         goBack={() =>
           setSearchParams({
             ...searchParams,
-            isRegistration: "false",
-            step: "address",
+            isRegistration: "true",
+            step: "intro",
           })
         }
       />
