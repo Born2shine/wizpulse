@@ -45,7 +45,7 @@ const StepOne = ({ formik }: any) => {
             placeholder="Your Middle Name"
             className="pl-8 placeholder:text-isGray400"
           />
-          <User size="16" className="absolute left-3 top-[34px] text-isGray400" />
+          <User size="16" className="absolute left-3 top-[38px] text-isGray400" />
         </div>
         <div className="relative mb-3 w-full">
           <Input

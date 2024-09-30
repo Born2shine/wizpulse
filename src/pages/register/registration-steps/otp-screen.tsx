@@ -15,6 +15,7 @@ import {
 import { otpSchema } from "@/utils/schema/registerSchema";
 import { useFormik } from "formik";
 import { REGEXP_ONLY_DIGITS_AND_CHARS } from "input-otp";
+import Cookies from "js-cookie";
 import { useSearchParams } from "react-router-dom";
 import { toast } from "sonner";
 
@@ -41,6 +42,7 @@ const OtpScreen = () => {
       };
       const response = await verifyOtp(payload);
       if (response?.data?.detail === "Email verified successfully") {
+        Cookies.set("token", response?.data?.data?.access);
         sessionStorage.setItem("token", response?.data?.data?.access);
         setSearchParams({
           ...searchParams,

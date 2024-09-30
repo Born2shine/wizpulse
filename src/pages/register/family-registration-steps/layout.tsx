@@ -18,11 +18,14 @@ import {
 } from "@/utils/schema/registerSchema";
 import { useSetupParentMutation } from "@/redux/services/auth/authApi";
 import { toast } from "sonner";
+import { useAppDispatch } from "@/redux/store";
+import { setParentInfo } from "@/redux/features/auth/authSlice";
 
 const FamilyRegistrationLayout = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   const [setupParent, { isLoading: settingUpParent }] =
     useSetupParentMutation();
@@ -152,6 +155,7 @@ const FamilyRegistrationLayout = () => {
                 "parentInfo",
                 JSON.stringify(response?.data?.data)
               );
+              dispatch(setParentInfo(response?.data?.data));
               toast.success("Account setup successful");
               navigate("/onboarding?ui=information");
             }

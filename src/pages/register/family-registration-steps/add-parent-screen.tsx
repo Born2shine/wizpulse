@@ -1,12 +1,14 @@
 import { Button, Input } from "@/components";
 import PhoneInput from "@/components/custom-phone-input";
 import FamilyRegistrationHeader from "@/components/registration/family-registration-header";
-import { FieldArray } from "formik";
+import { FieldArray, useFormikContext } from "formik";
 import { CircleMinus, Mail, Plus, User } from "lucide-react";
 import { useSearchParams } from "react-router-dom";
 
 const AddParentScreen = ({ formik }: any) => {
   const [searchParams, setSearchParams] = useSearchParams();
+
+  const { submitForm } = useFormikContext();
   return (
     <section>
       <FamilyRegistrationHeader
@@ -148,7 +150,13 @@ const AddParentScreen = ({ formik }: any) => {
       <Button
         className="w-full bg-transparent mt-2 text-isPrimary500 hover:bg-transparent"
         onClick={() => {
-          formik.handleSubmit();
+          formik.validateOnChange = false;
+          formik.validateOnBlur = false;
+          submitForm().then(() => {
+            // Re-enable validation after submission
+            formik.validateOnChange = true;
+            formik.validateOnBlur = true;
+          });
         }}
       >
         Skip for now
