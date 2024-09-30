@@ -63,7 +63,7 @@ export default function PhoneInput({
         <input
           type="text"
           id={name}
-          className="block w-full h-10 pl-16 pr-4 py-3 text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-[.85rem] "
+          className="block w-full h-10 pl-16 pr-4 py-3 text-gray-700 bg-white border border-gray-300 rounded-md outline-none text-[.85rem] "
           placeholder="(41) 345-897-21"
           value={value}
           onChange={handlePhoneChange}

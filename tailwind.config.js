@@ -65,6 +65,7 @@ module.exports = {
         isPrimary100: "#CCE3F9",
         isPrimary200: "#F6F9FF",
         isPrimary300: "#0045C2",
+        isPrimary400: "#0303B6",
         isPrimary500: "#00008B",
         isSuccess: "#2ECC71",
         isSecondary100: "#FEC84B",

@@ -24,7 +24,7 @@ const StepThree = ({ formik }: any) => {
           onChange={formik.setFieldValue}
           error={formik?.errors?.phone_number}
           name="phone_number"
-          touched={formik?.touched?.phone}
+          touched={formik?.touched?.phone_number}
           isRequired
         />
         <CheckInput

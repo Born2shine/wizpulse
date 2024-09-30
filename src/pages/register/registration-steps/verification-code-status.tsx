@@ -19,6 +19,13 @@ const VerificationCodeStatus = ({
           step: "otp",
         });
       }, 5000);
+    } else if (searchParams.get("step") === "verification-successful") {
+      setTimeout(() => {
+        setSearchParams({
+          isRegistration: "true",
+          step: "intro",
+        });
+      }, 5000);
     }
   }, [searchParams, setSearchParams]);
   return (
