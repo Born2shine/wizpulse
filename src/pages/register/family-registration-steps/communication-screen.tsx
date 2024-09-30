@@ -34,7 +34,7 @@ const CommunicationScreen = ({ formik }: any) => {
               },
               {
                 label: "Phone call",
-                value: "PHONE CALL",
+                value: "PHONE_NUMBER",
               },
             ]}
             value={formik.values.mode_of_communication}
