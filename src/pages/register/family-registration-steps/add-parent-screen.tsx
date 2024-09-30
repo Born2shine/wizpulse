@@ -1,14 +1,13 @@
 import { Button, Input } from "@/components";
 import PhoneInput from "@/components/custom-phone-input";
 import FamilyRegistrationHeader from "@/components/registration/family-registration-header";
-import { FieldArray, useFormikContext } from "formik";
+import { FieldArray } from "formik";
 import { CircleMinus, Mail, Plus, User } from "lucide-react";
 import { useSearchParams } from "react-router-dom";
 
 const AddParentScreen = ({ formik, loading, setSkip }: any) => {
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const { submitForm } = useFormikContext();
 
   console.log("searchParams", searchParams);
   return (
