@@ -86,11 +86,11 @@ const RegisterLayout = () => {
           } else if (searchParams.get("step") === "three") {
             setSearchParams({ isRegistration: "true", step: "four" });
           } else if (searchParams.get("step") === "four") {
-            const payload: any = { ...values };
+            const payload: any = { ...values, middle_name: values?.middle_name ? values?.middle_name : null };
             delete payload.agree;
             delete payload.terms;
             const response = await registerUser(payload);
-            console.log("response", response);
+            // console.log("response", response);
             if (Object.keys(response?.data)?.includes("email")) {
               const res = {...response?.data, phone_number: values?.phone_number}
               dispatch(setRegisteredUser(res));

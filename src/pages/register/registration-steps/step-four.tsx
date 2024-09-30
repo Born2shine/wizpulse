@@ -1,11 +1,14 @@
 import { Button, Input } from "@/components";
 import RegistrationHeader from "@/components/registration/registration-header";
 import { cn } from "@/lib/utils";
-import { LockKeyhole } from "lucide-react";
+import { EyeIcon, EyeOff, LockKeyhole } from "lucide-react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const StepFour = ({ formik, isLoading }: any) => {
   const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false)
+
   return (
     <section className="w-full">
       <RegistrationHeader
@@ -29,11 +32,16 @@ const StepFour = ({ formik, isLoading }: any) => {
             isRequired
             placeholder="e.g. example123&_"
             className="pl-8 placeholder:text-isGray400"
+            type={showPassword ? "text" : "password"}
           />
           <LockKeyhole
             size="16"
             className="absolute left-3 top-11 text-isGray400"
           />
+          <span 
+            className="absolute right-2 top-10 cursor-pointer"
+            onClick={() => setShowPassword(!showPassword)}
+          > {showPassword ? <EyeIcon width={20}/> : <EyeOff width={20}/>} </span>
         </div>
         <div className="mt-2">
           <h4 className="text-isPrimary900 text-xs tracking-[0.2px] font-bold mb-2">
