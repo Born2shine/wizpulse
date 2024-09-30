@@ -30,7 +30,7 @@ const EducationalBackgroundScreen = ({ formik }: any) => {
               },
               {
                 label: "High School/GED",
-                value: "High SCHOOL/GED",
+                value: "HIGH SCHOOL/GED",
               },
               {
                 label: "Some College (but didn’t finish)",

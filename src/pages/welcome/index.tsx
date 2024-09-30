@@ -1,8 +1,9 @@
 import { Button } from "@/components";
-import WelcomeAvatar from "../../assets/images/avatar.png";
 import { useNavigate } from "react-router-dom";
+import WelcomeAvatar from "../../assets/images/avatar.png";
 const Welcome = () => {
     const navigate = useNavigate();
+
   return (
     <section className="w-screen h-[95vh] overflow-hidden px-8 md:m-5 md:rounded-3xl md:border md:w-[30rem] md:mx-auto">
       <section className="flex flex-col items-center h-full mt-20">

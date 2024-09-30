@@ -29,6 +29,10 @@ const FamilyRegistrationLayout = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
+  const user = JSON.parse(sessionStorage.getItem("user") || "{}");
+
+  // console.log(user)
+
   const [setupParent, { isLoading: settingUpParent }] =
     useSetupParentMutation();
 
@@ -83,10 +87,10 @@ const FamilyRegistrationLayout = () => {
           zip_code: "",
           other_parents: [
             {
-              email: "",
-              first_name: "",
-              last_name: "",
-              phone_number: "",
+              email: user?.email || "",
+              first_name: user?.first_name || "",
+              last_name: user?.last_name || "",
+              phone_number: user?.phone_number || "",
             },
           ],
           ethnicity: "",
@@ -102,6 +106,7 @@ const FamilyRegistrationLayout = () => {
           total_points: 0,
         }}
         validationSchema={getFamiyValidationSchema()}
+        enableReinitialize
         onSubmit={async (values) => {
           if (searchParams.get("step") === "address") {
             setSearchParams({ isRegistration: "false", step: "ethnicity" });
@@ -161,7 +166,7 @@ const FamilyRegistrationLayout = () => {
               setSkip(false);
               dispatch(setParentInfo(response?.data?.data));
               toast.success("Account setup successful");
-              navigate("/onboarding?ui=information");
+              navigate("/onboarding?type=get-student-info&ui=information");
             }
           }
         }}

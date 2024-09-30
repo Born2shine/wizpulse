@@ -19,7 +19,7 @@ const FamilyRegistrationHeader = ({
   extraDescription?: ReactNode | string;
 }) => {
   return (
-    <header className="pt-14">
+    <header className="pt-10">
       <div className="flex items-center gap-3 justify-between w-full">
         <Button
           className="bg-transparent px-0 text-[#292D32] hover:bg-transparent"

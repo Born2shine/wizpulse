@@ -19,7 +19,7 @@ const AddressScreen = ({ formik }: any) => {
         }
       />
       <h2>Address</h2>
-      <div className="h-[40vh] overflow-auto py-6 pr-4">
+      <div className="h-[38vh] overflow-auto py-6 pr-4">
         <div className="relative mb-3 w-full">
           <Input
             label="Street address"

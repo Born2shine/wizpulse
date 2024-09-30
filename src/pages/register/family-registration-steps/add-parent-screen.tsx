@@ -8,8 +8,7 @@ import { useSearchParams } from "react-router-dom";
 const AddParentScreen = ({ formik, loading, setSkip }: any) => {
   const [searchParams, setSearchParams] = useSearchParams();
 
-
-  console.log("searchParams", searchParams);
+  // console.log("searchParams", searchParams);
   return (
     <section>
       <FamilyRegistrationHeader
@@ -25,7 +24,7 @@ const AddParentScreen = ({ formik, loading, setSkip }: any) => {
       <h2 className="text-sm font-semibold text-center text-isGray900 pt-4 ">
         Add additional Parent (Not applicable? Skip).
       </h2>
-      <div className="h-[46vh] overflow-auto my-4 pr-4">
+      <div className="h-[38vh] overflow-auto my-4 pr-4">
         <FieldArray
           name="other_parents"
           render={({ push, remove }) => (

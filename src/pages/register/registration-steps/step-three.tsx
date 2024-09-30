@@ -44,8 +44,10 @@ const StepThree = ({ formik }: any) => {
           label={
             <>
               I have read and agree to Wizpulse’s{" "}
-              <span className="text-isPrimary300">Privacy Policy</span> and{" "}
-              <span className="text-isPrimary300">Terms of Service</span>
+              <a href="https://wizearly.ai/privacy-policy" target="_blank">
+                <span className="text-isPrimary300">Privacy Policy</span> and{" "}
+                <span className="text-isPrimary300">Terms of Service</span>
+              </a>
             </>
           }
         />

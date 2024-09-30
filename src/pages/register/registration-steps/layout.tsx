@@ -92,8 +92,9 @@ const RegisterLayout = () => {
             const response = await registerUser(payload);
             console.log("response", response);
             if (Object.keys(response?.data)?.includes("email")) {
-              dispatch(setRegisteredUser(response?.data));
-              sessionStorage.setItem("user", JSON.stringify(response?.data));
+              const res = {...response?.data, phone_number: values?.phone_number}
+              dispatch(setRegisteredUser(res));
+              sessionStorage.setItem("user", JSON.stringify(res));
               setSearchParams({ isRegistration: "true", step: "verifying" });
               resetForm();
             }

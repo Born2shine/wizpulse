@@ -42,7 +42,7 @@ export const baseQueryInterceptor: BaseQueryFn<
       api.dispatch(onboardingReset());
       Cookies.remove("token");
       clearStorageItem();
-      window.location.href = "/login";
+      window.location.href = "/";
     }
   }
 

@@ -86,7 +86,7 @@ export default function Onboarding() {
   const handleFormSubmit = (values: any) => {
     if (ui === "information") {
       dispatch(onboardingReset());
-      navigate(`${pathname}?type=${type}&ui=add-student&uidb64=${uidb64}`);
+      navigate(`${pathname}?type=${type}&ui=add-student`);
     }
     if (ui === "add-student") {
       dispatch(
@@ -100,19 +100,19 @@ export default function Onboarding() {
         .then(() => {
           toast.success("Student Added Successfully");
           navigate(
-            `${pathname}?type=${type}&ui=consent-information&uidb64=${uidb64}`
+            `${pathname}?type=${type}&ui=consent-information`
           );
         });
     }
     if (ui === "consent-information") {
-      navigate(`${pathname}?type=${type}&ui=get-consent&uidb64=${uidb64}`);
+      navigate(`${pathname}?type=${type}&ui=get-consent`);
     }
     if (ui === "get-consent") {
       addParentConsent(values.other_info)
         .unwrap()
         .then((payload) => {
           toast.success("Consent Submitted Successfully");
-          navigate(`${pathname}?type=${type}&ui=completed&uidb64=${uidb64}`);
+          navigate(`${pathname}?type=${type}&ui=completed`);
         });
     }
   };
@@ -171,13 +171,13 @@ export default function Onboarding() {
     }
   }, [onboarding]);
 
-  useEffect(() => {
-    if (uidb64) {
-      Cookies.set("token", uidb64 as string);
-      sessionStorage.setItem("token", uidb64 as string);
-      dispatch(setAuthUser({ token: uidb64 }));
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (uidb64) {
+  //     Cookies.set("token", uidb64 as string);
+  //     sessionStorage.setItem("token", uidb64 as string);
+  //     dispatch(setAuthUser({ token: uidb64 }));
+  //   }
+  // }, []);
 
   return (
     <section className="w-screen h-screen overflow-hidden px-8 md:m-5 md:rounded-3xl md:border md:w-[30rem] md:mx-auto">
