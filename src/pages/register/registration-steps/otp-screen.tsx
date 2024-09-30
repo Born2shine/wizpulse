@@ -41,7 +41,7 @@ const OtpScreen = () => {
         email: user?.email,
       };
       const response = await verifyOtp(payload);
-      if (response?.data?.detail === "Email verified successfully") {
+      if (response?.data?.detail === "Phone number verified successfully") {
         Cookies.set("token", response?.data?.data?.access);
         sessionStorage.setItem("token", response?.data?.data?.access);
         setSearchParams({
@@ -74,11 +74,11 @@ const OtpScreen = () => {
   return (
     <section>
       <RegistrationHeader
-        description="Email Verification"
+        description="Phone Number Verification"
         extraDescription={
           <>
             Please enter the code sent to{" "}
-            <span className="text-isPrimary300">{user?.email}</span>
+            <span className="text-isPrimary300">+{user?.phone_number}</span>
           </>
         }
       />
@@ -104,7 +104,7 @@ const OtpScreen = () => {
       </div>
       <p
         className={cn(
-          "text-xs text-red-500 hidden",
+          "pl-10 pt-2 text-xs text-red-500 hidden",
           errors.otp && touched.otp && "block"
         )}
       >
