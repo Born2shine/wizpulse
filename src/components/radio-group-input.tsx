@@ -19,7 +19,6 @@ const RadioGroupInput = ({
   value: string;
 }) => {
   const handleOptionSelect = (value: string) => {
-    console.log("value", { name, value });
     onChange(name, value);
   };
   return (
@@ -39,14 +38,14 @@ const RadioGroupInput = ({
       <RadioGroup
         className="mt-4"
         onValueChange={handleOptionSelect}
-        defaultValue={value}
+        value={value}
       >
         {options?.map((option, index) => {
           return (
             <div
               className="flex items-center py-3 cursor-pointer px-4 justify-between space-y-2 bg-[#F7FAFF]"
               key={index}
-              //   onClick={() => onChange(name, option?.value)}
+              onClick={() => handleOptionSelect(String(option?.value))}
             >
               <label
                 className="text-isGray900 font-semibold text-[.85rem] md:text-[15px]"
