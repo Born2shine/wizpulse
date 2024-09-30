@@ -9,6 +9,8 @@ const AddParentScreen = ({ formik }: any) => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const { submitForm } = useFormikContext();
+
+  console.log("searchParams", searchParams);
   return (
     <section>
       <FamilyRegistrationHeader
